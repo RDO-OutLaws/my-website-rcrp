@@ -293,19 +293,32 @@
             .hero-left {
                 padding: 120px 6% 60px 6%;
                 flex: auto;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-right {
-                height: 400px;
-                flex: auto;
-            }
-            .hero-right::before {
-                display: none;
-            }
+         
+      
+ body {
+            background: #080813 url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-    </style>
+
+        /* Main Hero Section Layout */
+        .hero-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            padding-top: 80px;
+            /* Darkens the background image slightly so text remains readable */
+            background: rgba(8, 8, 19, 0.4); 
+        }
+
+        /* Remove the old right side image panel styles completely */
+        .hero-right {
+            display: none;
+        }
+        }
+    <style>
 </head>
 <body>
 
@@ -322,7 +335,6 @@
         </div>
         <button class="sign-in-btn">Sign in</button>
     </header>
-
     <main class="hero-container">
         
         <div class="bg-watermark">ROYAL CITY ROLEPLAY</div>
