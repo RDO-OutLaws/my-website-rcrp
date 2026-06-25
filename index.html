@@ -1,11 +1,369 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Public Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCRP — Realistic ERLC Roleplay Community</title>
+    <style>
+        /* Base Reset & Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #080813;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Cyberpunk subtle grid overlay */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Navbar Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, #3b3b4f, #1e1e2f);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 900;
+        }
+
+        .nav-center-menu {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: 0.3s ease;
+        }
+
+        .nav-center-menu:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .sign-in-btn {
+            background: #7c4dff;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+        }
+
+        .sign-in-btn:hover {
+            background: #6c36ff;
+            box-shadow: 0 6px 20px rgba(124, 77, 255, 0.5);
+        }
+
+        /* Main Hero Section Layout */
+        .hero-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            padding-top: 80px;
+        }
+
+        /* Hero Left Side - Text & Content */
+        .hero-left {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5% 0 8%;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+            width: fit-content;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .highlight-purple {
+            color: #b392ff;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 540px;
+        }
+
+        /* Action Buttons Wrapper */
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c4dff, #6366f1);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px rgba(124, 77, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(124, 77, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-pink {
+            background: linear-gradient(135deg, #d946ef, #a855f7);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px rgba(217, 70, 239, 0.4);
+        }
+
+        .btn-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(217, 70, 239, 0.6);
+        }
+
+        /* Hero Right Side - Split Images Layout */
+        .hero-right {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Diagonal Split Effect */
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100px;
+            width: 200px;
+            height: 100%;
+            background: #080813;
+            transform: skewX(-15deg);
+            z-index: 2;
+            box-shadow: -20px 0 50px #080813;
+        }
+
+        .image-pane {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            filter: brightness(0.5) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+
+        .image-pane:hover {
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        /* Split Line Separator */
+        .pane-top {
+            border-bottom: 4px solid rgba(8, 8, 19, 0.8);
+            /* Add your custom image URLs inside the url('') below */
+            background-image: url('https://images.unsplash.com/photo-1616455579100-2ceaa4eb2c37?auto=format&fit=crop&w=1200&q=80'); 
+        }
+
+        .pane-bottom {
+            background-image: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=80');
+        }
+
+        /* Subtle Floating Text Background Effect */
+        .bg-watermark {
+            position: absolute;
+            font-size: 7rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            user-select: none;
+            pointer-events: none;
+            white-space: nowrap;
+            bottom: 10%;
+            left: -10%;
+            z-index: 1;
+        }
+
+        /* Bottom Floating Feedback Button */
+        .feedback-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 100;
+        }
+
+        /* Tablet & Mobile Responsiveness */
+        @media (max-width: 968px) {
+            .hero-container {
+                flex-direction: column;
+            }
+            .hero-left {
+                padding: 120px 6% 60px 6%;
+                flex: auto;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-right {
+                height: 400px;
+                flex: auto;
+            }
+            .hero-right::before {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This site is hosted on GitHub Pages via the Linux Terminal.</p>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon">RC</div>
+            <span>RCRP</span>
+        </div>
+        <div class="nav-center-menu">
+            <span>Menu</span>
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <button class="sign-in-btn">Sign in</button>
+    </header>
+
+    <main class="hero-container">
+        
+        <div class="bg-watermark">ROYAL CITY ROLEPLAY</div>
+
+        <div class="hero-left">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                <span>Roblox · Emergency Response: Liberty County</span>
+            </div>
+            
+            <h1 class="hero-title">
+                Welcome to <span class="highlight-purple">RCRP</span> — <br>
+                Realistic ERLC <br>
+                Roleplay <br>
+                Community
+            </h1>
+            
+            <p class="hero-description">
+                A serious ERLC roleplay community where civilians, dispatchers and first responders write the story of Liberty County together. High standards. Real people. Endless scenarios.
+            </p>
+
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">Join the Community &rarr;</a>
+                <a href="#" class="btn btn-secondary">Learn more about our community</a>
+                <a href="#" class="btn btn-pink">Join The Team! &rarr;</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="image-pane pane-top"></div>
+            <div class="image-pane pane-bottom"></div>
+        </div>
+    </main>
+
+    <button class="feedback-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Feedback
+    </button>
+
 </body>
 </html>
 
