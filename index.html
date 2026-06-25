@@ -14,15 +14,12 @@
         }
 
         body {
-            background-color: #080813;
+            /* Sets your custom collage image as the fixed, full-screen background */
+            background: #080813 url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
-            /* Cyberpunk subtle grid overlay */
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
         }
 
         /* Navbar Navigation */
@@ -96,15 +93,17 @@
             min-height: 100vh;
             width: 100%;
             padding-top: 80px;
+            /* Applies a sleek dark tint to keep your text incredibly readable over the image */
+            background: rgba(8, 8, 19, 0.65);
         }
 
         /* Hero Left Side - Text & Content */
         .hero-left {
-            flex: 1.2;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 5% 0 8%;
+            padding: 0 8%;
             z-index: 2;
         }
 
@@ -112,12 +111,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 24px;
             width: fit-content;
         }
@@ -143,10 +142,10 @@
 
         .hero-description {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.6;
             margin-bottom: 40px;
-            max-width: 540px;
+            max-width: 580px;
         }
 
         /* Action Buttons Wrapper */
@@ -182,14 +181,15 @@
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(8, 8, 19, 0.5);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .btn-pink {
@@ -204,75 +204,12 @@
             box-shadow: 0 6px 25px rgba(217, 70, 239, 0.6);
         }
 
-        /* Hero Right Side - Split Images Layout */
-        .hero-right {
-            flex: 1;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* Diagonal Split Effect */
-        .hero-right::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100px;
-            width: 200px;
-            height: 100%;
-            background: #080813;
-            transform: skewX(-15deg);
-            z-index: 2;
-            box-shadow: -20px 0 50px #080813;
-        }
-
-        .image-pane {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            filter: brightness(0.5) contrast(1.1);
-            transition: filter 0.5s ease;
-        }
-
-        .image-pane:hover {
-            filter: brightness(0.7) contrast(1.1);
-        }
-
-        /* Split Line Separator */
-        .pane-top {
-            border-bottom: 4px solid rgba(8, 8, 19, 0.8);
-            /* Add your custom image URLs inside the url('') below */
-            background-image: url('https://images.unsplash.com/photo-1616455579100-2ceaa4eb2c37?auto=format&fit=crop&w=1200&q=80'); 
-        }
-
-        .pane-bottom {
-            background-image: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=80');
-        }
-
-        /* Subtle Floating Text Background Effect */
-        .bg-watermark {
-            position: absolute;
-            font-size: 7rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.02);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            user-select: none;
-            pointer-events: none;
-            white-space: nowrap;
-            bottom: 10%;
-            left: -10%;
-            z-index: 1;
-        }
-
         /* Bottom Floating Feedback Button */
         .feedback-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(8, 8, 19, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 10px 18px;
             border-radius: 20px;
@@ -283,42 +220,15 @@
             gap: 6px;
             color: rgba(255, 255, 255, 0.8);
             z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
-        /* Tablet & Mobile Responsiveness */
-        @media (max-width: 968px) {
-            .hero-container {
-                flex-direction: column;
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
             }
-            .hero-left {
-                padding: 120px 6% 60px 6%;
-                flex: auto;
-         
-      
- body {
-            background: #080813 url('background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
         }
-
-        /* Main Hero Section Layout */
-        .hero-container {
-            display: flex;
-            min-height: 100vh;
-            width: 100%;
-            padding-top: 80px;
-            /* Darkens the background image slightly so text remains readable */
-            background: rgba(8, 8, 19, 0.4); 
-        }
-
-        /* Remove the old right side image panel styles completely */
-        .hero-right {
-            display: none;
-        }
-        }
-    <style>
+    </style>
 </head>
 <body>
 
@@ -335,10 +245,9 @@
         </div>
         <button class="sign-in-btn">Sign in</button>
     </header>
+
     <main class="hero-container">
         
-        <div class="bg-watermark">ROYAL CITY ROLEPLAY</div>
-
         <div class="hero-left">
             <div class="badge">
                 <span class="badge-dot"></span>
@@ -363,10 +272,6 @@
             </div>
         </div>
 
-        <div class="hero-right">
-            <div class="image-pane pane-top"></div>
-            <div class="image-pane pane-bottom"></div>
-        </div>
     </main>
 
     <button class="feedback-btn">
